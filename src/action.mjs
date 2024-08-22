@@ -25,14 +25,13 @@ const getCommitDepth = () => {
 const getPushEventCommits = async () => {
   const octokit = getOctokit(getInput('token'))
   const { owner, repo } = eventContext.issue
-  const { before } = eventContext.payload
+  const { after } = eventContext.payload
   const { data: commits } = await octokit.rest.repos.listCommits({
     owner,
     repo,
-    sha: before,
+    sha: after,
     per_page: 100,
   })
-
   return commits.map((commit) => ({
     message: commit.commit.message,
     hash: commit.sha,
