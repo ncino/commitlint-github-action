@@ -32,6 +32,7 @@ const getPushEventCommits = async () => {
     sha: after,
     per_page: 100,
   })
+  console.log('hey everyone, just making sure this test version is being used')
   return commits.map((commit) => ({
     message: commit.commit.message,
     hash: commit.sha,
